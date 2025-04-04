@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FreshMarket</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="container flex items-center justify-between px-4">
+        <div class="nav-left flex items-center">
+          <a href="/" class="flex items-center space-x-2">
+            <span
+              class="logo-icon bg-grocery-green text-white p-2 rounded-full"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"
+                />
+                <path d="M10 2c1 .5 2 2 2 5" />
+              </svg>
+            </span>
+            <h1
+              class="site-title text-2xl font-display font-bold text-grocery-green"
+            >
+              FreshMarket
+            </h1>
+          </a>
+        </div>
+
+        <div class="nav-right flex items-center space-x-4">
+          <button id="cartToggle" class="btn-ghost relative">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path
+                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              ></path>
+            </svg>
+            <span
+              id="cartBadge"
+              class="badge absolute -top-2 -right-2 text-white"
+            ></span>
+          </button>
+
+          <a
+            href="/admin.html"
+            class="admin-link text-gray-600 hover:text-grocery-green"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M4 21v-2a4 4 0 0 1 3-3.87"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div
+        class="container mx-auto px-4 flex flex-col md:flex-row items-center"
+      >
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">
+            Produtos frescos entregues na sua porta
+          </h1>
+          <p class="text-lg mb-6">
+            Compre nossa ampla seleção de produtos frescos e orgânicos e itens
+            de mercearia.
+          </p>
+          <button
+            class="bg-white text-grocery-green hover:bg-grocery-light-green hover:text-grocery-green transition-colors h-9 rounded-md px-3"
+            id="shopNow"
+          >
+            Compre agora
+          </button>
+        </div>
+
+        <div class="md:w-1/2 flex justify-center">
+          <img
+            src="/assets/nrd-D6Tu_L3chLE-unsplash.jpg"
+            alt="Fresh groceries"
+            class="rounded-lg shadow-lg max-w-full h-auto"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Products section -->
+    <div class="container">
+      <h2 class="text-3xl font-display font-bold mb-8 text-grocery-green">
+        Os nossos produtos
+      </h2>
+      <div style="margin-bottom: 1em">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search products..."
+          style="padding: 0.5em; width: 200px"
+          class="pl-10"
+        />
+        <button id="clearFilters">Clear filters</button>
+        <div id="filterButtons" style="margin-top: 1em"></div>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="productsGrid" class="products">
+        <!-- Products will be dynamically added here -->
+      </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart">
+      <div class="cart-header">
+        <h2>Shopping Cart</h2>
+        <button id="closeCart">X</button>
+      </div>
+      <div id="cartItemsContainer">
+        <!-- Cart items will be dynamically added here -->
+      </div>
+      <div id="cartTotal" style="margin-top: 1em; font-weight: bold">
+        Total: €0.00
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
