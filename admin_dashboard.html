@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FreshMarket Admin Dashboard</title>
     <link rel="stylesheet" href="/styles.css" />
-    <!-- Using Tailwind from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="min-h-screen bg-gray-50 flex flex-col">
-    <!-- Header -->
     <header class="bg-grocery-green text-white shadow-md">
       <div
         class="container mx-auto px-4 py-4 flex justify-between items-center"
@@ -81,7 +79,6 @@
         </div>
       </div>
 
-      <!-- Tabs Section -->
       <div id="tabs-container">
         <div class="tabs mb-6 flex space-x-4 border-b">
           <button
@@ -100,7 +97,6 @@
           </button>
         </div>
 
-        <!-- Products Tab Content -->
         <div class="tab-content" id="products-tab">
           <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-display font-bold text-grocery-green">
@@ -115,7 +111,6 @@
               Adicionar Produto
             </button>
           </div>
-          <!-- Products Tab Content -->
           <div
             class="card p-4 overflow-auto rounded-lg border bg-card text-card-foreground shadow-sm"
             id="products-table-container"
@@ -136,7 +131,6 @@
           </div>
         </div>
 
-        <!-- Orders Tab Content -->
         <div class="tab-content hidden" id="orders-tab">
           <div class="mb-6">
             <h2 class="text-2xl font-display font-bold text-grocery-green">
