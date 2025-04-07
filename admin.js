@@ -119,7 +119,7 @@ function renderOrdersTable() {
         <td class="px-4 py-2">#${order.id}</td>
         <td class="px-4 py-2">${customerName}</td>
         <td class="px-4 py-2">${orderDate}</td>
-        <td class="px-4 py-2">${totalItems}</td>
+        <td class="px-4 py-2">${totalItems} itens</td>
         <td class="px-4 py-2 text-right">€${parseFloat(totalPrice).toFixed(
           2
         )}</td>
@@ -137,14 +137,15 @@ function closeModal() {
   productModal.classList.add('hidden');
   productForm.reset();
   editingProduct = null;
-  modalTitle.textContent = 'Add New Product';
+  modalTitle.textContent = 'Adicionar Produto';
 }
 
 function handleEditProduct(productId) {
   const product = products.find((p) => p.id === productId);
+
   if (!product) return;
   editingProduct = product;
-  modalTitle.textContent = 'Edit Product';
+  modalTitle.textContent = 'Editar Produto';
   productForm['name'].value = product.name;
   productForm['price'].value = product.price;
   productForm['quantity'].value = product.quantity;
@@ -162,7 +163,7 @@ tabTriggers.forEach((btn) => {
 
 addProductBtn.addEventListener('click', () => {
   editingProduct = null;
-  modalTitle.textContent = 'Add New Product';
+  modalTitle.textContent = 'Adicionar Produto';
   openModal();
 });
 
@@ -185,12 +186,12 @@ productForm.addEventListener('submit', (e) => {
     products = products.map((p) =>
       p.id === editingProduct.id ? { ...p, ...newProduct } : p
     );
-    alert(`${newProduct.name} has been updated successfully`);
+    alert(`${newProduct.name} foi atualizado`);
   } else {
     newProduct.id =
       products.length > 0 ? Math.max(...products.map((p) => p.id)) + 1 : 1;
     products.push(newProduct);
-    alert(`${newProduct.name} has been added to inventory`);
+    alert(`${newProduct.name} foi adicionado`);
   }
   updateStats();
   renderProductsTable();
@@ -209,11 +210,31 @@ document.getElementById('logout-btn').addEventListener('click', () => {
 });
 
 // --- API Calls ---
+function loadOrderItems() {
+  return fetch('/api/get_order_items.php')
+    .then((response) => response.json())
+    .then((data) => {
+      return data.map((item) => ({
+        ...item,
+        order_id: Number(item.order_id),
+        product_id: Number(item.product_id),
+        quantity: Number(item.quantity),
+      }));
+    })
+    .catch((error) => {
+      console.error('Error loading order items:', error);
+      return [];
+    });
+}
+
 function loadDashboardData() {
   fetch('/api/get_products.php')
     .then((response) => response.json())
     .then((data) => {
-      products = data;
+      products = data.map((p) => ({
+        ...p,
+        id: Number(p.id),
+      }));
       updateStats();
       renderProductsTable();
     })
@@ -223,9 +244,20 @@ function loadDashboardData() {
     .then((response) => response.json())
     .then((data) => {
       orders = data;
-      console.log(orders);
-      updateStats();
-      renderOrdersTable();
+
+      loadOrderItems().then((orderItems) => {
+        console.log('Order items:', orderItems);
+        orders = orders.map((order) => {
+          const items = orderItems.filter(
+            (item) => Number(item.order_id) === Number(order.id)
+          );
+          order.items = items;
+          return order;
+        });
+
+        updateStats();
+        renderOrdersTable();
+      });
     })
     .catch((error) => console.error('Error loading orders:', error));
 }

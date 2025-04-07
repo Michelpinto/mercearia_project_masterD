@@ -36,7 +36,7 @@
         <div class="card border rounded-lg shadow-sm bg-white p-6">
           <div class="card-header pb-2">
             <h3 class="card-title text-sm font-medium text-gray-500">
-              Total Products
+              Produtos
             </h3>
           </div>
           <div class="card-content">
@@ -51,7 +51,7 @@
         <div class="card border rounded-lg shadow-sm bg-white p-6">
           <div class="card-header pb-2">
             <h3 class="card-title text-sm font-medium text-gray-500">
-              Total Orders
+              Encomendas
             </h3>
           </div>
           <div class="card-content">
@@ -69,7 +69,7 @@
         <div class="card border rounded-lg shadow-sm bg-white p-6">
           <div class="card-header pb-2">
             <h3 class="card-title text-sm font-medium text-gray-500">
-              Total Customers
+              Clientes
             </h3>
           </div>
           <div class="card-content">
@@ -89,14 +89,14 @@
             data-tab="products"
           >
             <i data-lucide="package" class="h-4 w-4 mr-2"> </i>
-            Products
+            Produtos
           </button>
           <button
             class="tab-trigger active pb-2 border-b-2 border-grocery-green flex items-center"
             data-tab="orders"
           >
             <i data-lucide="clipboard" class="h-4 w-4 mr-2"> </i>
-            Orders
+            Encomendas
           </button>
         </div>
 
@@ -104,7 +104,7 @@
         <div class="tab-content" id="products-tab">
           <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-display font-bold text-grocery-green">
-              Product Inventory
+              Lista de Produtos
             </h2>
             <button
               id="add-product-btn"
@@ -112,7 +112,7 @@
             >
               <i data-lucide="plus" class="mr-2 h-4 w-4"> </i>
 
-              Add Product
+              Adicionar Produto
             </button>
           </div>
           <!-- Products Tab Content -->
@@ -124,11 +124,11 @@
               <thead class="border-b">
                 <tr>
                   <th class="px-4 py-2 text-left">ID</th>
-                  <th class="px-4 py-2 text-left">Name</th>
-                  <th class="px-4 py-2 text-left">Category</th>
-                  <th class="px-4 py-2 text-right">Price</th>
-                  <th class="px-4 py-2 text-right">Quantity</th>
-                  <th class="px-4 py-2 text-right">Actions</th>
+                  <th class="px-4 py-2 text-left">Nome</th>
+                  <th class="px-4 py-2 text-left">Categoria</th>
+                  <th class="px-4 py-2 text-right">Preço</th>
+                  <th class="px-4 py-2 text-right">Quantidade</th>
+                  <th class="px-4 py-2 text-right">Ações</th>
                 </tr>
               </thead>
               <tbody id="products-table-body"></tbody>
@@ -140,7 +140,7 @@
         <div class="tab-content hidden" id="orders-tab">
           <div class="mb-6">
             <h2 class="text-2xl font-display font-bold text-grocery-green">
-              Order History
+              Histórico de Encomendas
             </h2>
           </div>
           <div
@@ -150,12 +150,12 @@
             <table class="w-full text-sm">
               <thead class="border-b">
                 <tr>
-                  <th class="px-4 py-2 text-left">Order ID</th>
-                  <th class="px-4 py-2 text-left">Customer</th>
-                  <th class="px-4 py-2 text-left">Order Date</th>
-                  <th class="px-4 py-2 text-left">Items</th>
+                  <th class="px-4 py-2 text-left">ID</th>
+                  <th class="px-4 py-2 text-left">Cliente</th>
+                  <th class="px-4 py-2 text-left">Data da Encomenda</th>
+                  <th class="px-4 py-2 text-left">Artigos</th>
                   <th class="px-4 py-2 text-right">Total</th>
-                  <th class="px-4 py-2 text-right">Actions</th>
+                  <th class="px-4 py-2 text-right">Ações</th>
                 </tr>
               </thead>
               <tbody id="orders-table-body"></tbody>
@@ -175,14 +175,14 @@
           &times;
         </button>
         <h3 id="modal-title" class="text-lg font-semibold mb-4">
-          Add New Product
+          Adicionar Produto
         </h3>
         <form id="product-form" class="space-y-4">
           <div>
             <label
               for="prod-name"
               class="block text-sm font-medium text-gray-700"
-              >Product Name</label
+              >Nome do produto</label
             >
             <input
               type="text"
@@ -197,7 +197,7 @@
               <label
                 for="prod-price"
                 class="block text-sm font-medium text-gray-700"
-                >Price (€)</label
+                >Preço (€)</label
               >
               <input
                 type="number"
@@ -213,7 +213,7 @@
               <label
                 for="prod-quantity"
                 class="block text-sm font-medium text-gray-700"
-                >Quantity</label
+                >Quantidade</label
               >
               <input
                 type="number"
@@ -229,7 +229,7 @@
             <label
               for="prod-category"
               class="block text-sm font-medium text-gray-700"
-              >Category</label
+              >Categoria</label
             >
             <input
               type="text"
@@ -243,7 +243,7 @@
             <label
               for="prod-image"
               class="block text-sm font-medium text-gray-700"
-              >Image URL</label
+              >Imagem URL</label
             >
             <input
               type="text"
@@ -256,7 +256,7 @@
             <label
               for="prod-description"
               class="block text-sm font-medium text-gray-700"
-              >Description</label
+              >Descrição</label
             >
             <textarea
               id="prod-description"
@@ -270,13 +270,13 @@
               id="cancel-btn"
               class="border rounded px-4 py-2"
             >
-              Cancel
+              Cancelar
             </button>
             <button
               type="submit"
               class="bg-grocery-green hover:bg-grocery-green/90 text-white rounded px-4 py-2"
             >
-              Save
+              Guardar
             </button>
           </div>
         </form>
