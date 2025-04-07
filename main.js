@@ -155,6 +155,7 @@ function loadProducts() {
     .then((response) => response.json())
     .then((data) => {
       products = data;
+      console.log(products);
       renderProducts();
       renderFilters();
     })

@@ -151,7 +151,6 @@ function handleEditProduct(productId) {
   productForm['quantity'].value = product.quantity;
   productForm['category'].value = product.category;
   productForm['image'].value = product.image || '';
-  productForm['description'].value = product.description || '';
   openModal();
 }
 
@@ -173,29 +172,71 @@ cancelBtn.addEventListener('click', closeModal);
 productForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(productForm);
-  const newProduct = {
+  const productData = {
     name: formData.get('name'),
     price: parseFloat(formData.get('price')),
     quantity: parseInt(formData.get('quantity')),
     category: formData.get('category'),
     image: formData.get('image'),
-    description: formData.get('description'),
   };
 
   if (editingProduct) {
-    products = products.map((p) =>
-      p.id === editingProduct.id ? { ...p, ...newProduct } : p
-    );
-    alert(`${newProduct.name} foi atualizado`);
+    productData.id = editingProduct.id;
+    fetch('/api/edit_product.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(productData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          products = products.map((p) =>
+            p.id === editingProduct.id ? { ...p, ...productData } : p
+          );
+          alert(`${productData.name} foi atualizado com sucesso`);
+        } else {
+          alert(`Error updating product: ${data.error}`);
+        }
+        updateStats();
+        renderProductsTable();
+        closeModal();
+      })
+      .catch((error) => {
+        console.error('Error updating product:', error);
+        alert('Error updating product.');
+      });
   } else {
-    newProduct.id =
-      products.length > 0 ? Math.max(...products.map((p) => p.id)) + 1 : 1;
-    products.push(newProduct);
-    alert(`${newProduct.name} foi adicionado`);
+    fetch('/api/add_product.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(productData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          productData.id =
+            data.id ||
+            (products.length > 0
+              ? Math.max(...products.map((p) => p.id)) + 1
+              : 1);
+          products.push(productData);
+          alert(`${productData.name} foi adicionado ao inventário`);
+        } else {
+          alert(`Error adding product: ${data.error}`);
+        }
+        updateStats();
+        renderProductsTable();
+        closeModal();
+      })
+      .catch((error) => {
+        console.error('Error adding product:', error);
+        alert('Error adding product.');
+      });
   }
-  updateStats();
-  renderProductsTable();
-  closeModal();
 });
 
 productsTableBody.addEventListener('click', (e) => {
