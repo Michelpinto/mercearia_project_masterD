@@ -33,6 +33,10 @@
   font-weight: 500;
 }
 
+.text-accent-foreground {
+  /* color: var(--text-blue); */
+}
+
 .text-gray-600 {
   color: var(--text-gray);
   font-weight: 600;
@@ -125,41 +129,6 @@ body {
 button {
   padding: 0.5em 1em;
   cursor: pointer;
-}
-.cart {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 300px;
-  max-width: 100%;
-  height: 100%;
-  background: #fff;
-  border-left: 1px solid #ddd;
-  padding: 1em;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-  z-index: 100;
-}
-.cart.open {
-  transform: translateX(0);
-}
-.cart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.cart-item {
-  border-bottom: 1px solid #ddd;
-  padding: 0.5em 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#cartTotal {
-  margin-top: 1em;
-  font-weight: bold;
-  display: block;
 }
 
 .card {

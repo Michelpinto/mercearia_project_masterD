@@ -80,31 +80,63 @@
         Os nossos produtos
       </h2>
       <div class="flex flex-col md:flex-row gap-6 mb-8">
-        <div class="relative md:w-1/2">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search products..."
-            style="padding: 0.5em; width: 200px"
-            class="pl-10"
-          />
-          <button id="clearFilters">Clear filters</button>
-          <div id="filterButtons" style="margin-top: 1em"></div>
-        </div>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Procure pelo nome..."
+          style="padding: 0.5em; width: 200px"
+          class="pl-10 border border-gray-300 rounded px-3 py-2"
+        />
+        <button id="clearFilters">Limpar filtros</button>
+        <div id="filterButtons"></div>
       </div>
 
       <div id="productsGrid" class="products"></div>
     </div>
 
     <!-- Cart sidebar -->
-    <div id="cartModal" class="cart">
-      <div class="cart-header">
-        <h2>Shopping Cart</h2>
-        <button id="closeCart">X</button>
-      </div>
-      <div id="cartItemsContainer"></div>
-      <div id="cartTotal" style="margin-top: 1em; font-weight: bold">
-        Total: €0.00
+    <div id="cartModal" class="cart fixed inset-0 z-50 flex justify-end hidden">
+      <div class="absolute inset-0 bg-black/50" id="cartOverlay"></div>
+
+      <div
+        class="relative w-full max-w-md bg-white shadow-lg flex flex-col h-full"
+      >
+        <div class="p-4 border-b flex justify-between items-center">
+          <h2 class="text-xl font-medium flex items-center gap-2">
+            <i data-lucide="shopping-cart" class="h-5 w-5"></i> Carrinho de
+            compras
+          </h2>
+          <button id="closeCart" class="p-1 rounded hover:bg-gray-200">
+            <i data-lucide="x" class="h-5 w-5"></i>
+          </button>
+        </div>
+
+        <div
+          id="cartItemsContainer"
+          class="flex-grow overflow-y-auto p-4 space-y-4"
+        ></div>
+
+        <div class="p-4 border-t">
+          <div class="flex justify-between mb-4">
+            <span class="font-medium">Total:</span>
+            <span id="cartTotal" class="font-semibold">€0.00</span>
+          </div>
+          <div class="space-y-2">
+            <a
+              href="/checkout"
+              id="checkoutBtn"
+              class="w-full block bg-grocery-green text-white py-2 px-4 rounded-md text-center font-medium hover:bg-grocery-green/90 transition-colors"
+            >
+              Finalizar compra
+            </a>
+            <button
+              id="continueShoppingBtn"
+              class="w-full border border-green-500 py-2 px-4 rounded-md text-green-500 hover:bg-green-100 transition-colors"
+            >
+              Continuar comprando
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
