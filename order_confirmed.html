@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmed - FreshMarket</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  </head>
+  <body class="min-h-screen bg-grocery-beige flex flex-col">
+    <header class="bg-white shadow-sm py-4">
+      <div class="container mx-auto px-4 flex items-center">
+        <a href="/" class="flex items-center space-x-2">
+          <span class="bg-grocery-green text-white p-2 rounded-full">
+            <i data-lucide="apple" class="lucide-apple"> </i>
+          </span>
+          <h1 class="text-xl font-display font-bold text-grocery-green">
+            FreshMarket
+          </h1>
+        </a>
+      </div>
+    </header>
+
+    <main
+      class="flex-grow container mx-auto py-12 px-4 flex items-center justify-center"
+    >
+      <div
+        class="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center"
+      >
+        <div class="mb-6 flex justify-center">
+          <i
+            data-lucide="check-circle"
+            class="h-20 w-20 text-grocery-green"
+          ></i>
+        </div>
+
+        <h1 class="text-2xl font-display font-bold mb-4 text-grocery-green">
+          Pedido Confirmado
+        </h1>
+
+        <p class="text-gray-600 mb-6">
+          Obrigado por fazer o seu pedido! Estamos processando-o e você receberá
+          uma confirmação por e-mail em breve.
+        </p>
+
+        <div class="bg-grocery-light-green/20 rounded-lg p-4 mb-6">
+          <h3 class="font-medium text-grocery-green mb-2">
+            Referência do pedido
+          </h3>
+          <p id="orderRef" class="text-lg font-mono">#ORD-XXXXXX</p>
+        </div>
+
+        <a href="/">
+          <button
+            class="w-full bg-grocery-green hover:bg-grocery-green/90 text-white py-2 px-4 rounded-md flex items-center justify-center font-medium transition-colors"
+          >
+            <i data-lucide="home" class="mr-2 h-4 w-4"></i>Retornar à página
+            inicial
+          </button>
+        </a>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        lucide.createIcons();
+        document.getElementById('currentYear').textContent =
+          new Date().getFullYear();
+        const orderRef = '#ORD-' + Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('orderRef').textContent = orderRef;
+      });
+    </script>
+  </body>
+</html>
