@@ -1,3 +1,9 @@
+<?php require_once 'api/auth_check.php';
+
+require_once './config.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +29,7 @@
           class="text-white bg-transparent border-0 flex items-center"
         >
           <i data-lucide="log-out" class="mr-2 h-4 w-4"> </i>
-          Sign Out
+          Terminar sessão
         </button>
       </div>
     </header>
@@ -149,7 +155,7 @@
                   <th class="px-4 py-2 text-left">Data da Encomenda</th>
                   <th class="px-4 py-2 text-left">Artigos</th>
                   <th class="px-4 py-2 text-right">Total</th>
-                  <th class="px-4 py-2 text-right">Ações</th>
+                  <th class="px-4 py-2 text-right">detalhes</th>
                 </tr>
               </thead>
               <tbody id="orders-table-body"></tbody>
