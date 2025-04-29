@@ -33,10 +33,6 @@
   font-weight: 500;
 }
 
-.text-accent-foreground {
-  /* color: var(--text-blue); */
-}
-
 .text-gray-600 {
   color: var(--text-gray);
   font-weight: 600;
@@ -79,7 +75,6 @@ body {
   color: #4caf50;
 }
 
-/* Navigation links */
 .nav-links a {
   text-decoration: none;
   color: #4a4a4a;
@@ -89,7 +84,6 @@ body {
   color: #4caf50;
 }
 
-/* Nav right buttons */
 .btn-ghost {
   background: none;
   border: none;
